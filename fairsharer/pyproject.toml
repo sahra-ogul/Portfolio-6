@@ -4,7 +4,7 @@
 # - https://www.python.org/dev/peps/pep-0621/
 
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -33,11 +33,7 @@ version = "0.1.0"
 
 [project.optional-dependencies]
 dev = [
-    "black",
-    "flake8",
-    "isort",
     "pytest",
-    "pytest-cov",
     "ruff",
 ]
 publishing = [
@@ -55,14 +51,6 @@ exclude = '''
 )/
 '''
 
-[tool.isort]
-profile = "black"
-known_first_party = "fairsharer"
-src_paths = ["fairsharer", "tests"]
-line_length = "120"
-
-[tool.pylint]  # If you opt to use pylint
-# Pylint configuration options
 
 [tool.ruff]
 line-length = 120
@@ -73,6 +61,3 @@ line-ending = "lf"
 
 [tool.ruff.lint]
 extend-select = ["E", "I"]
-
-[tool.ruff.lint.isort]
-known-first-party = ["fairsharer"]
