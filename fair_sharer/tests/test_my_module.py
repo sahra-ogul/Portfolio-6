@@ -1,24 +1,19 @@
-"""Tests for the fairsharer.my_module module.
-"""
-import pytest
-
-from fairsharer.my_module import hello
+from fairsharer import my_module
 
 
-def test_hello():
-    assert hello("Alice") == "Hello Alice!"
+def test_fair_sharer_one_iteration():
+    values = [0, 1000, 800, 0]
+    result = my_module.fair_sharer(values, 1)
+    assert result == [100, 800, 900, 0]
 
 
-def test_hello_with_error():
-    with pytest.raises(ValueError) as excinfo:
-        hello("nobody")
-    assert "Cannot say hello to nobody" in str(excinfo.value)
+def test_fair_sharer_two_iterations():
+    values = [0, 1000, 800, 0]
+    result = my_module.fair_sharer(values, 2)
+    assert result == [100, 890, 720, 90]
 
 
-@pytest.fixture
-def some_name():
-    return "Jane Smith"
-
-
-def test_hello_with_fixture(some_name):
-    assert hello(some_name) == "Hello Jane Smith!"
+def test_no_iterations():
+    values = [1, 2, 3]
+    result = my_module.fair_sharer(values, 0)
+    assert result == values
